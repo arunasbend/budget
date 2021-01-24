@@ -18,7 +18,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install Yarn
 RUN npm install -g yarn
 
-WORKDIR /usr/share/nginx/budget
+WORKDIR /var/www
 COPY . .
 
 # Required before we're able to run any "php artisan" commands
@@ -26,6 +26,6 @@ RUN composer install
 
 RUN php artisan budget:install
 
-RUN chown -R www-data:www-data /usr/share/nginx/budget
+RUN chown -R www-data:www-data /var/www
 
 CMD ./docker_boot.sh
